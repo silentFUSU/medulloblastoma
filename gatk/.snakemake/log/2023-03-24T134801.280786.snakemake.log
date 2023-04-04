@@ -1,0 +1,33 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 5
+Rules claiming more threads will be scaled down.
+Job stats:
+job                 count    min threads    max threads
+----------------  -------  -------------  -------------
+BaseRecalibrator        1              1              1
+all                     1              1              1
+total                   2              1              1
+
+Select jobs to execute...
+
+[Fri Mar 24 13:48:02 2023]
+rule BaseRecalibrator:
+    input: /storage/zhangyanxiaoLab/suzhuojie/software/varCA/data/S04.bam
+    output: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/result/S04_recal_data.table2
+    jobid: 1
+    reason: Missing output files: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/result/S04_recal_data.table2
+    resources: tmpdir=/tmp
+
+[Fri Mar 24 13:48:04 2023]
+Error in rule BaseRecalibrator:
+    jobid: 1
+    input: /storage/zhangyanxiaoLab/suzhuojie/software/varCA/data/S04.bam
+    output: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/result/S04_recal_data.table2
+    shell:
+        gatk --java-options '-Xmx20G' BaseRecalibrator -I /storage/zhangyanxiaoLab/suzhuojie/software/varCA/data/S04.bam -R /storage/zhangyanxiaoLab/zhangliwen/genome/hg38.fa --known-sites /storage/zhangyanxiaoLab/zhangliwen/genome/gatk/1000G_phase1.snps.high_confidence.hg38.vcf.gz--known-sites /storage/zhangyanxiaoLab/zhangliwen/genome/gatk/dbsnp_146.hg38.vcf.gz--known-sites /storage/zhangyanxiaoLab/zhangliwen/genome/gatk/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz-O /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/result/S04_recal_data.table2
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2023-03-24T134801.280786.snakemake.log

@@ -1,0 +1,7 @@
+Building DAG of jobs...
+MissingInputException in rule subset_tumor in file /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/code/merge_data/gatk/snakefile, line 72:
+Missing input files for rule subset_tumor:
+    output: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/data/rawdata/bam/fixed_cancer/S04_marked_fixed_cancer.bam
+    wildcards: sample=S04
+    affected files:
+        /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/result/before_doubletfinder/gatk/barcode_cancer/S04.txt

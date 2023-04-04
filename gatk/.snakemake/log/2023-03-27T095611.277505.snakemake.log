@@ -1,0 +1,101 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 10
+Rules claiming more threads will be scaled down.
+Job stats:
+job                  count    min threads    max threads
+-----------------  -------  -------------  -------------
+AnalyzeCovariates        1              1              1
+ApplyBQSR                1              1              1
+BaseRecalibrator         1              1              1
+BaseRecalibrator2        1              1              1
+all                      1              1              1
+mutect2                  1              1              1
+normalchromosome         1              1              1
+subset_tumor             1              1              1
+total                    8              1              1
+
+Select jobs to execute...
+
+[Mon Mar 27 09:57:05 2023]
+rule normalchromosome:
+    input: /storage/zhangyanxiaoLab/suzhuojie/software/varCA/data/S04.bam
+    output: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/data/rawdata/bam/normal_chromosome/S04.bam
+    jobid: 1
+    reason: Missing output files: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/data/rawdata/bam/normal_chromosome/S04.bam
+    wildcards: sample=S04
+    resources: tmpdir=/tmp
+
+[Mon Mar 27 14:49:48 2023]
+Finished job 1.
+1 of 8 steps (12%) done
+Select jobs to execute...
+
+[Mon Mar 27 14:49:48 2023]
+rule BaseRecalibrator:
+    input: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/data/rawdata/bam/normal_chromosome/S04.bam
+    output: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/result/merge_data/before_doubletfinder/gatk/recal_table/S04_recal_data.table1
+    jobid: 2
+    reason: Missing output files: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/result/merge_data/before_doubletfinder/gatk/recal_table/S04_recal_data.table1; Input files updated by another job: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/data/rawdata/bam/normal_chromosome/S04.bam
+    wildcards: sample=S04
+    resources: tmpdir=/tmp
+
+[Mon Mar 27 19:41:53 2023]
+Finished job 2.
+2 of 8 steps (25%) done
+Select jobs to execute...
+
+[Mon Mar 27 19:41:53 2023]
+rule ApplyBQSR:
+    input: /storage/zhangyanxiaoLab/suzhuojie/software/varCA/data/S04.bam, /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/result/merge_data/before_doubletfinder/gatk/recal_table/S04_recal_data.table1
+    output: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/data/rawdata/bam/fixed/S04_marked_fixed.bam
+    jobid: 3
+    reason: Missing output files: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/data/rawdata/bam/fixed/S04_marked_fixed.bam; Input files updated by another job: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/result/merge_data/before_doubletfinder/gatk/recal_table/S04_recal_data.table1
+    wildcards: sample=S04
+    resources: tmpdir=/tmp
+
+[Tue Mar 28 05:51:01 2023]
+Finished job 3.
+3 of 8 steps (38%) done
+Select jobs to execute...
+
+[Tue Mar 28 05:51:02 2023]
+rule subset_tumor:
+    input: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/data/rawdata/bam/fixed/S04_marked_fixed.bam, /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/result/merge_data/before_doubletfinder/gatk/barcode_cancer/S04.txt
+    output: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/data/rawdata/bam/fixed_cancer/S04_marked_fixed_cancer.bam
+    jobid: 6
+    reason: Missing output files: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/data/rawdata/bam/fixed_cancer/S04_marked_fixed_cancer.bam; Input files updated by another job: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/data/rawdata/bam/fixed/S04_marked_fixed.bam
+    wildcards: sample=S04
+    resources: tmpdir=/tmp
+
+
+[Tue Mar 28 05:51:02 2023]
+rule BaseRecalibrator2:
+    input: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/data/rawdata/bam/fixed/S04_marked_fixed.bam
+    output: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/result/merge_data/before_doubletfinder/gatk/recal_table/S04_recal_data.table2
+    jobid: 4
+    reason: Missing output files: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/result/merge_data/before_doubletfinder/gatk/recal_table/S04_recal_data.table2; Input files updated by another job: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/data/rawdata/bam/fixed/S04_marked_fixed.bam
+    wildcards: sample=S04
+    resources: tmpdir=/tmp
+
+[Tue Mar 28 05:51:02 2023]
+Error in rule subset_tumor:
+    jobid: 6
+    input: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/data/rawdata/bam/fixed/S04_marked_fixed.bam, /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/result/merge_data/before_doubletfinder/gatk/barcode_cancer/S04.txt
+    output: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/data/rawdata/bam/fixed_cancer/S04_marked_fixed_cancer.bam
+    shell:
+        /storage/zhangyanxiaoLab/suzhuojie/software/subset-bam_linux --bam /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/data/rawdata/bam/fixed/S04_marked_fixed.bam --bam-tag CB --cell-barcodes /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/result/merge_data/before_doubletfinder/gatk/barcode_cancer/S04.txt cores 4 --log-level info --out-bam /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/data/rawdata/bam/fixed_cancer/S04_marked_fixed_cancer.bam
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+[Tue Mar 28 09:50:33 2023]
+Error in rule BaseRecalibrator2:
+    jobid: 4
+    input: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/data/rawdata/bam/fixed/S04_marked_fixed.bam
+    output: /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/result/merge_data/before_doubletfinder/gatk/recal_table/S04_recal_data.table2
+    shell:
+        gatk --java-options '-Xmx20G' BaseRecalibrator -I /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/data/rawdata/bam/fixed/S04_marked_fixed.bam -R /storage/zhangyanxiaoLab/suzhuojie/ref_data/hg38.fa --known-sites /storage/zhangyanxiaoLab/suzhuojie/ref_data/gatk/1000G_phase1.snps.high_confidence.hg38.vcf.gz --known-sites /storage/zhangyanxiaoLab/suzhuojie/ref_data/gatk/dbsnp_146.hg38.vcf.gz --known-sites /storage/zhangyanxiaoLab/suzhuojie/ref_data/gatk/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz -O /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/result/merge_data/before_doubletfinder/gatk/recal_table/S04_recal_data.table2
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2023-03-27T095611.277505.snakemake.log

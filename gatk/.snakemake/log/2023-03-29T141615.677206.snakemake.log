@@ -1,0 +1,5 @@
+Building DAG of jobs...
+MissingInputException in rule all in file /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/code/merge_data/gatk/snakefile, line 12:
+Missing input files for rule all:
+    affected files:
+        /storage/zhangyanxiaoLab/suzhuojie/projects/medulloblastoma/result/merge_data/before_doubletfinder/gatk/plot/S04_AnalyzeCovariates.pdf
